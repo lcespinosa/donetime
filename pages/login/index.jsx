@@ -1,24 +1,38 @@
 import Image from "next/image";
 import styled from "styled-components";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import Layout from "components/layouts/Security";
 import Logo from "components/common/Logo";
 
-import { Button, IconButton } from "components/ui";
+import { Button, IconButton, Typography } from "components/ui";
+
+const { Title } = Typography;
 
 const LogoBox = styled.div`
   height: 149px;
   width: 730px;
 `;
 
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["login"])),
+    },
+  };
+}
+
 export default function Example() {
+  const { t } = useTranslation("login");
+
   return (
     <Layout>
       <div>
         <Logo dark />
-        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-          Sign in to your account
-        </h2>
+        <Title level={2} className="mt-6">
+          {t("Sign in to your account")}
+        </Title>
       </div>
 
       <div className="mt-8">

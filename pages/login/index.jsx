@@ -1,19 +1,14 @@
-import Image from "next/image";
-import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import classNames from "classnames";
 
 import Layout from "components/layouts/Security";
 import Logo from "components/common/Logo";
 
-import { Button, IconButton, Typography } from "components/ui";
+import { Button, Link, Typography, Form } from "components/ui";
 
 const { Title } = Typography;
-
-const LogoBox = styled.div`
-  height: 149px;
-  width: 730px;
-`;
+const { Label, Input, Checkbox } = Form;
 
 export async function getStaticProps({ locale }) {
   return {
@@ -26,12 +21,17 @@ export async function getStaticProps({ locale }) {
 export default function Example() {
   const { t } = useTranslation("login");
 
+  const digitButtonClasses = classNames(
+    "inline-flex justify-center py-3 px-6 border border-gray-300 rounded-md shadow-sm bg-white",
+    "text-sm font-medium text-gray-500 hover:bg-gray-50 cursor-pointer"
+  );
+
   return (
     <Layout>
       <div>
         <Logo dark />
         <Title level={2} className="mt-6">
-          {t("Sign in to your account")}
+          {t("Sign in with your PIN")}
         </Title>
       </div>
 
@@ -39,66 +39,38 @@ export default function Example() {
         <div className="mt-6">
           <form action="#" method="POST" className="space-y-6">
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Email address
-              </label>
+              <Label htmlFor="pin">PIN</Label>
               <div className="mt-1">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-1">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Password
-              </label>
-              <div className="mt-1">
-                <input
-                  id="password"
-                  name="password"
+                <Input
+                  id="pin"
+                  name="pin"
                   type="password"
-                  autoComplete="current-password"
+                  className="text-center"
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                />
-                <label
-                  htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-900"
-                >
-                  Remember me
-                </label>
+            <div className="max-w-max mx-auto space-y-4">
+              <div className="grid grid-cols-3 gap-4">
+                <div className={digitButtonClasses}>7</div>
+                <div className={digitButtonClasses}>8</div>
+                <div className={digitButtonClasses}>9</div>
               </div>
-
-              <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  Forgot your password?
-                </a>
+              <div className="grid grid-cols-3 gap-4">
+                <div className={digitButtonClasses}>4</div>
+                <div className={digitButtonClasses}>5</div>
+                <div className={digitButtonClasses}>6</div>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <div className={digitButtonClasses}>1</div>
+                <div className={digitButtonClasses}>2</div>
+                <div className={digitButtonClasses}>3</div>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <div className="col-start-2">
+                  <div className={digitButtonClasses}>0</div>
+                </div>
               </div>
             </div>
 

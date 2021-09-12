@@ -1,6 +1,13 @@
-const Panel = ({ heading, footer, ...props }) => {
+import classNames from "classnames";
+
+const Panel = ({ heading, footer, className, ...props }) => {
+  const panelClassNames = classNames(
+    "bg-white overflow-hidden shadow sm:rounded-lg",
+    className
+  );
+
   return (
-    <div className="bg-white overflow-hidden shadow sm:rounded-lg">
+    <div className={panelClassNames}>
       <div className="px-4 py-5 sm:p-6">
         {heading}
         {props.children}

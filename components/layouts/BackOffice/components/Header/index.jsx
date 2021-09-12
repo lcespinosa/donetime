@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import Image from "next/image";
 
-import { MenuAlt2Icon, PlusSmIcon, SearchIcon } from "@heroicons/react/outline";
+import { MenuAlt2Icon } from "@heroicons/react/outline";
 
 import { ROUTES } from "helpers";
 const { USER } = ROUTES;

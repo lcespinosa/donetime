@@ -5,6 +5,8 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { Panel, Heading, Button } from "components/ui";
 
+import { InProgressTable } from "components/views/back_office/projects";
+
 const Projects = ({ ...props }) => {
   const { t } = useTranslation("navigation");
 
@@ -35,10 +37,22 @@ const Projects = ({ ...props }) => {
     );
   };
 
+  const buildTableView = () => {
+    const selectedTab = tabs.find((tab) => tab.current);
+    switch (selectedTab.name) {
+      case "In progress":
+        return <InProgressTable />;
+      default:
+        return <></>;
+    }
+  };
+
   return (
     <Layout title="Projects" t={t}>
       <div className="p-4">
-        <Panel heading={buildHeading()}>Projects</Panel>
+        <Panel className="pb-28" heading={buildHeading()}>
+          {buildTableView()}
+        </Panel>
       </div>
     </Layout>
   );

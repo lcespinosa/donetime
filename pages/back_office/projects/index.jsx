@@ -11,15 +11,15 @@ const Projects = ({ ...props }) => {
   const { t } = useTranslation("navigation");
 
   const [tabs, setSelectedTab] = useState([
-    { name: t("In progress"), href: "#", current: true },
-    { name: t("Completed"), href: "#", current: false },
-    { name: t("Cancelled"), href: "#", current: false },
+    { id: "in_progress", name: t("In progress"), href: "#", current: true },
+    { id: "completed", name: t("Completed"), href: "#", current: false },
+    { id: "cancelled", name: t("Cancelled"), href: "#", current: false },
   ]);
 
   const updateTabSelection = (selection) => {
     const newState = [...tabs];
     newState.map((tab) => {
-      tab.current = tab.name === selection;
+      tab.current = tab.id === selection;
     });
     setSelectedTab(newState);
   };
@@ -39,9 +39,9 @@ const Projects = ({ ...props }) => {
 
   const buildTableView = () => {
     const selectedTab = tabs.find((tab) => tab.current);
-    switch (selectedTab.name) {
-      case "In progress":
-        return <InProgressTable />;
+    switch (selectedTab.id) {
+      case "in_progress":
+        return <InProgressTable t={t} />;
       default:
         return <></>;
     }
